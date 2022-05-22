@@ -4,6 +4,9 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import {useState} from 'react';
+import {Bar} from 'react-chartjs-2';
+
+
 
 export default function Arithmetic() {
     const [message_initial, setMessage_initial] = useState('');
@@ -28,9 +31,16 @@ export default function Arithmetic() {
       console.log(event_number.target.value);
     };
 
+
+    function refreshPage() {
+      window.location.reload(false);
+    }
+
+  
+
     var  arithmetic_list = []
     for (let i = 0; i < message_number; i++) {
-      arithmetic_item = message_initial + (i-1)*message_difference
+      arithmetic_item = Number(message_initial) + (i-1)*Number(message_difference)
       arithmetic_list.push(arithmetic_item)
     };
 
@@ -38,6 +48,30 @@ export default function Arithmetic() {
     
     var arithmetic_item = message_initial + (message_number-1)*message_difference
     console.log(arithmetic_item)
+
+    var item = []
+    for (let i = 0; i < message_number; i++) {
+      var result = 'a' + String(i)
+      item.push(result)
+    };
+    console.log(item)
+
+
+    const state = {
+      labels: item,
+      datasets: [
+        {
+          label: 'Arithmetic Progression Bar',
+          backgroundColor: 'rgba(75,192,192,1)',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 1,
+          data: arithmetic_list
+        }
+      ]
+    }
+    
+
+    console.log(state)
 
     return (
       <div>
@@ -55,12 +89,28 @@ export default function Arithmetic() {
           <TextField id="number" label="The number of term" variant="filled" onChange={handleChange_number} value={message_number}/>
 
         </Box>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-            <Stack spacing={2} direction="row">
-                <Button variant="contained">Submit</Button>
-                <Button variant="outlined">Reset</Button>
-            </Stack>
+        <Button variant="contained" onClick={refreshPage} >Reset</Button><br />
+
+        <div className = "barchart">
+          <Bar
+            data={state}
+            options={{
+              title:{
+                display:true,
+                text:'Average Rainfall per month',
+                fontSize:26
+              },
+              legend:{
+                display:true,
+                position:'right'
+              }
+            }}
+            
+          />
         </div>
+
+
+
       </div>
     );
   }
