@@ -95,8 +95,8 @@ export default function Arithmetic() {
         <div className = "barchart">
           <Bar
             data={state}
-            width={200}
-            height={40}
+            width={150}
+            height={100}
             options={{
               title:{
                 display:true,
