@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import {useState} from 'react';
 import {Bar} from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
 
 
 
@@ -94,6 +95,8 @@ export default function Arithmetic() {
         <div className = "barchart">
           <Bar
             data={state}
+            width={200}
+            height={40}
             options={{
               title:{
                 display:true,
