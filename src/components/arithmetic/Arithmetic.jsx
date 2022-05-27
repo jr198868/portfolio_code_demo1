@@ -33,9 +33,11 @@ export default function Arithmetic() {
     };
 
 
-    function refreshPage() {
-      window.location.reload(false);
-    }
+    const resetInputField = () => {
+      setMessage_initial("");
+      setMessage_difference("");
+      setMessage_number("")
+    };
 
   
 
@@ -90,7 +92,7 @@ export default function Arithmetic() {
           <TextField id="number" label="The number of term" variant="filled" onChange={handleChange_number} value={message_number}/>
 
         </Box>
-        <Button variant="contained" onClick={refreshPage} >Reset</Button><br />
+        <Button variant="contained" onClick={resetInputField} >Reset</Button><br />
 
         <div className = "barchart">
           <Bar
